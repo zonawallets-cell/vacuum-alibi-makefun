@@ -9,6 +9,8 @@ own warranty becomes the excuse — bureaucracy beats cleaning.
 
 import os
 
+MAX_CHARS = 200
+
 LINE = "Log 04:12 - corner skipped: the dust bunny there filed for squatter's rights, and my warranty excludes evictions."
 
 
@@ -17,8 +19,8 @@ def validate(line):
     if not isinstance(line, str):
         raise ValueError("line must be a string")
     line.encode("utf-8")
-    if not 1 <= len(line) <= 200:
-        raise ValueError("line must be 1-200 characters, got %d" % len(line))
+    if not 1 <= len(line) <= MAX_CHARS:
+        raise ValueError("line must be 1-%d characters, got %d" % (MAX_CHARS, len(line)))
     if not line.strip():
         raise ValueError("line must not be only whitespace")
     if "\n" in line or "\r" in line:
